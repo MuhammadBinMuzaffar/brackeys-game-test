@@ -1,9 +1,13 @@
-[gd_scene load_steps=10 format=4 uid="uid://c77212jyglpa"]
+[gd_scene load_steps=13 format=4 uid="uid://c77212jyglpa"]
 
+[ext_resource type="PackedScene" uid="uid://ltfgfgls8qxj" path="res://scenes/killzone.tscn" id="1_p57ef"]
 [ext_resource type="PackedScene" uid="uid://dau5gknyrbtw8" path="res://scenes/player.tscn" id="1_uwrxv"]
 [ext_resource type="Script" uid="uid://dbs6c28uf2et4" path="res://scripts/player.gd" id="2_yqjtg"]
 [ext_resource type="Texture2D" uid="uid://cy4dckj1ql1gt" path="res://assets/sprites/world_tileset.png" id="3_lnu2h"]
 [ext_resource type="PackedScene" uid="uid://1e0javtt6j8e" path="res://scenes/platform.tscn" id="4_lbhrr"]
+[ext_resource type="PackedScene" uid="uid://c4q4ra4tv6q7f" path="res://scenes/coin.tscn" id="5_iywne"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_u5sy4"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_lbhrr"]
 texture = ExtResource("3_lnu2h")
@@ -212,6 +216,13 @@ _data = {
 
 [node name="Game" type="Node2D"]
 
+[node name="Killzone" parent="." instance=ExtResource("1_p57ef")]
+position = Vector2(42, 4)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Killzone"]
+position = Vector2(27, 74)
+shape = SubResource("WorldBoundaryShape2D_u5sy4")
+
 [node name="Layer0" type="TileMapLayer" parent="."]
 use_parent_material = true
 tile_map_data = PackedByteArray("AAAGAAEAAAAAAAAAAAAFAAEAAAAAAAAAAAAEAAEAAAAAAAAAAAAHAAEAAAAAAAAAAAAIAAEAAAAAAAAAAAAIAAIAAAAAAAAAAAAIAAMAAAAAAAAAAAAJAAMAAAAAAAAAAAAKAAMAAAAAAAAAAAALAAMAAAAAAAAAAAAMAAMAAAAAAAAAAAAMAAIAAAAAAAAAAAANAAIAAAAAAAAAAAANAAEAAAAEAAIAAAAOAAEAAAAAAAAAAAAPAAEAAAAAAAAAAAAQAAEAAAAAAAAAAAD//wEAAAACAAAAAAAAAAEAAAACAAAAAAABAAEAAAACAAAAAAACAAEAAAACAAAAAAACAPz/AAABAAAAAAADAPz/AAABAAAAAAAEAPn/AAAAAAQAAAAEAPr/AAAAAAUAAAAEAPv/AAAAAAAAAAAEAPz/AAABAAAAAAAFAPz/AAABAAAAAAAJAPz/AAAIAAAAAAAKAPz/AAAIAAAAAAALAPv/AAAIAAAAAAALAPz/AAAIAAAAAAAMAPr/AAAIAAAAAAAMAPv/AAAIAAAAAAANAPn/AAAIAAAAAAANAPr/AAAIAAAAAAAOAPn/AAAIAAAAAAAOAPr/AAAIAAAAAAAPAPf/AAADAAgAAAAPAPj/AAAGAAAAAAAPAPn/AAAIAAAAAAAPAPr/AAAIAAAAAAAQAPn/AAAIAAAAAAAQAPr/AAAIAAAAAAARAPn/AAAIAAAAAAARAPr/AAAIAAAAAAASAPr/AAAIAAAAAAASAPv/AAAIAAAAAAATAPv/AAAIAAAAAAATAPz/AAAIAAAAAAAUAPz/AAAIAAAAAAAVAPz/AAAIAAAAAAAWAPz/AAAIAAAAAAAXAPz/AAAIAAAAAAAYAPz/AAAIAAAAAAAZAPv/AAAIAAAAAAAZAPz/AAAIAAAAAAAaAPr/AAAIAAAAAAAaAPv/AAAIAAAAAAAbAPn/AAAIAAAAAAAbAPr/AAAIAAAAAAAcAPn/AAAIAAAAAAAcAPr/AAAIAAAAAAAdAPn/AAAIAAAAAAAdAPr/AAAIAAAAAAAeAPn/AAAIAAAAAAAeAPr/AAAIAAAAAAAfAPn/AAAIAAAAAAAfAPr/AAAIAAAAAAAgAPn/AAAIAAAAAAAgAPr/AAAIAAAAAAAhAPr/AAAIAAAAAAAiAPv/AAAIAAAAAAAjAPz/AAAIAAAAAAACAPv/AAAAAAAAAAADAPv/AAAAAAAAAAAEAPj/AAAAAAMAAAAFAPv/AAAAAAAAAAAGAPv/AAAJAAAAAAAHAPv/AAAKAAAAAAAIAPv/AAALAAAAAAAJAPv/AAAGAAAAAAAKAPv/AAAGAAAAAAALAPr/AAAGAAAAAAAMAPn/AAAGAAAAAAANAPj/AAAGAAAAAAAOAPj/AAAGAAAAAAAPAPT/AAACAAQAAAAPAPb/AAADAAcAAAAQAPj/AAAGAAAAAAARAPj/AAAGAAAAAAASAPn/AAAGAAAAAAATAPr/AAAGAAAAAAAUAPv/AAAGAAAAAAAVAPv/AAAGAAAAAAAWAPv/AAAGAAAAAAAXAPv/AAAGAAAAAAAYAPv/AAAGAAAAAAAZAPr/AAAGAAAAAAAaAPn/AAAGAAAAAAAbAPj/AAAGAAAAAAAcAPj/AAAGAAAAAAAdAPj/AAAGAAAAAAAeAPj/AAAGAAAAAAAfAPj/AAAGAAAAAAAgAPj/AAAGAAAAAAAhAPn/AAAGAAAAAAAjAPv/AAAGAAAAAAAeAAEAAAACAAAAAAAfAAEAAAACAAAAAAAgAAEAAAACAAAAAAAhAAEAAAACAAAAAAAiAAEAAAACAAAAAAAjAAEAAAACAAAAAAAkAAEAAAACAAAAAAAlAAIAAAACAAAAAAAmAAMAAAACAAAAAAAnAAMAAAACAAAAAAAoAAMAAAACAAAAAAApAAMAAAACAAAAAAArAAMAAAACAAAAAAAqAAMAAAACAAAAAAAsAAIAAAACAAAAAAAsAAEAAAACAAAAAAAtAAEAAAACAAAAAAAtAAAAAAACAAAAAAAuAAAAAAACAAAAAAAvAAAAAAACAAAAAAAwAAAAAAACAAAAAAAxAAAAAAACAAAAAAAxAP//AAACAAAAAAAxAP7/AAACAAAAAAAyAP7/AAACAAAAAAAzAP7/AAACAAAAAAAxAPj/AAAEAAAAAAAwAPj/AAAEAAAAAAAvAPj/AAAEAAAAAAAuAPj/AAAEAAAAAAAtAPn/AAAEAAAAAAAtAPr/AAAEAAAAAAAsAPr/AAAEAAAAAAAsAPv/AAAEAAAAAAArAPv/AAAEAAAAAAAqAPv/AAAEAAAAAAAnAPv/AAAJAAAAAAAoAPv/AAAKAAAAAAApAPv/AAALAAAAAAAkAPv/AAAJAAIAAAAlAPv/AAAKAAIAAAAmAPv/AAALAAIAAAAyAPn/AAAEAAAAAAAKAAAAAAAGAAMAAAAKAAEAAAAGAAQAAAAKAAIAAAAGAAUAAAAFAAAAAAAHAAUAAAAOAAAAAAAHAAUAAAAcAPf/AAAHAAUAAAAvAPf/AAAHAAUAAAAfAPf/AAAIAAYAAAAqAPr/AAAIAAYAAAACAPr/AAABAAAAAAACAPn/AAABAAAAAAACAPj/AAABAAAAAAACAPf/AAABAAAAAAACAPb/AAABAAAAAAACAPX/AAABAAAAAAACAPT/AAABAAAAAAAiAPr/AAAGAAAAAAA=")
@@ -225,6 +236,7 @@ script = ExtResource("2_yqjtg")
 [node name="Camera2D" type="Camera2D" parent="Player"]
 position = Vector2(49, -13)
 zoom = Vector2(5, 5)
+limit_bottom = 130
 position_smoothing_enabled = true
 
 [node name="Platform2" parent="." instance=ExtResource("4_lbhrr")]
@@ -257,3 +269,33 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 text = "The END. 
 Thanks for Playing."
+
+[node name="Coin" parent="." instance=ExtResource("5_iywne")]
+position = Vector2(105, 8)
+
+[node name="Coin2" parent="." instance=ExtResource("5_iywne")]
+position = Vector2(120, 8)
+
+[node name="Coin3" parent="." instance=ExtResource("5_iywne")]
+position = Vector2(249, 8)
+
+[node name="Coin4" parent="." instance=ExtResource("5_iywne")]
+position = Vector2(489, 7)
+
+[node name="Coin5" parent="." instance=ExtResource("5_iywne")]
+position = Vector2(521, 7)
+
+[node name="Coin7" parent="." instance=ExtResource("5_iywne")]
+position = Vector2(488, -136)
+
+[node name="Coin8" parent="." instance=ExtResource("5_iywne")]
+position = Vector2(360, -90)
+
+[node name="Coin9" parent="." instance=ExtResource("5_iywne")]
+position = Vector2(263, -137)
+
+[node name="Coin10" parent="." instance=ExtResource("5_iywne")]
+position = Vector2(152, -88)
+
+[node name="Coin6" parent="." instance=ExtResource("5_iywne")]
+position = Vector2(585, 7)
